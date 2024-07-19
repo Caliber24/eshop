@@ -1,0 +1,163 @@
+{%  extends 'shared/_layout.html' %}
+
+{% block title %}
+	تماس با ما
+{% endblock %}
+
+{% block content %}
+	<div id="contact-page" class="container">
+    	<div class="bg">
+{#	    	<div class="row">#}
+{#				<div class="container">#}
+{#	    			<div class="col-sm-12" style="overflow: hidden; margin-bottom: 40px">#}
+{#						<h2 class="title text-center">تمـاس با مـا</h2>#}
+{#                                <div id="gmap" class="contact-map">#}
+{#								<img src="/static//static/images/home/Map.jpg" alt="Map">#}
+{#							    </div>#}
+{#					</div>#}
+{#				</div>#}
+{#				</div>#}
+    		<div class="row">
+	    		<div class="col-sm-8">
+	    			<div class="contact-form">
+	    				<h2 class="title text-center">با ما در ارتباط باشیـد</h2>
+	    				<div class="status alert alert-success" style="display: none"></div>
+				    	<form id="main-contact-form" class="contact-form row" name="contact-form" action="{% url 'contact_us_page' %}" method="post">
+				            {% csrf_token %}
+
+
+{#                            {% for field in form %}#}
+{#                                <div class="form-group col-md-6">#}
+{#                                    {{ field.label_tag }}#}
+{#                                    {{ field }}#}
+{#                                    {{ field.errors }}#}
+{#                                </div>#}
+{#                            {% endfor %}#}
+
+{#                            <hr>#}
+
+                            <div class="form-group col-md-6">
+                                    {{ form.email.label_tag }}
+                                    {{ form.email }}
+                                    {{ form.email.errors }}
+                            </div>
+
+                            <div class="form-group col-md-6 ">
+{#                                {% if contact_form.full_name.errors%} text-danger{% endif %}#}
+                                {{ form.full_name.label_tag }}
+                                {{ form.full_name }}
+                                {{ form.full_name.errors }}
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                {{ form.title.label_tag }}
+                                {{ form.title }}
+                                {{ form.title.errors }}
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                {{ form.message.label_tag }}
+                                {{ form.message }}
+                                {{ form.message.errors }}
+                            </div>
+
+
+{#                            <div class="form-group col-md-6">#}
+{#                                    {{ contact_form.email.label_tag }}#}
+{#                                    {{ contact_form.email }}#}
+{#                                    {{ contact_form.email.errors }}#}
+{#                            </div>#}
+{##}
+{#                            <div class="form-group col-md-6 ">#}
+{#                                {% if contact_form.full_name.errors%} text-danger{% endif %}#}
+{#                                {{ contact_form.full_name.label_tag }}#}
+{#                                {{ contact_form.full_name }}#}
+{#                                {{ contact_form.full_name.errors }}#}
+{#                            </div>#}
+{##}
+{#                            <div class="form-group col-md-12">#}
+{#                                {{ contact_form.title.label_tag }}#}
+{#                                {{ contact_form.title }}#}
+{#                                {{ contact_form.title.errors }}#}
+{#                            </div>#}
+{##}
+{#                            <div class="form-group col-md-12">#}
+{#                                {{ contact_form.message.label_tag }}#}
+{#                                {{ contact_form.message }}#}
+{#                                {{ contact_form.message.errors }}#}
+{#                            </div>#}
+
+
+{#                             {{ contact_form }}#}
+{##}
+{#                            {% if has_error %}#}
+{#                            	<p class="alert alert-warning">#}
+{#                                    لطفا ایمیل خود را وارد نمایید#}
+{#                                </p>#}
+{#                            {% endif %}#}
+{#				            <div class="form-group col-md-6">#}
+{#				                <input type="text" name="fullname" class="form-control"  placeholder="نام">#}
+{#				            </div>#}
+{#				            <div class="form-group col-md-6">#}
+{#				                <input type="email" name="email" class="form-control" placeholder="ایمیـل">#}
+{#				            </div>#}
+{#				            <div class="form-group col-md-12">#}
+{#				                <input type="text" name="subject" class="form-control" placeholder="موضـوع">#}
+{#				            </div>#}
+{#				            <div class="form-group col-md-12">#}
+{#				                <textarea name="message" id="message"  class="form-control" rows="8" placeholder="پیغـام شمـا"></textarea>#}
+{#				            </div>#}
+				            <div class="form-group col-md-12">
+{#				                <input type="submit" name="submit" class="btn btn-primary pull-right" value="ارسـال">#}
+				                <button type="submit" class="btn btn-primary pull-right">ارسال</button>
+				            </div>
+				        </form>
+	    			</div>
+	    		</div>
+	    		<div class="col-sm-4">
+	    			<div class="contact-info">
+	    				<h2 class="title text-center">اطلاعات تماس</h2>
+	    				<address>
+	    					<p>{{ sitesetting.site_name }}</p>
+							<p>{{ sitesetting.address }}</p>
+							{% if sitesetting.phone %}
+        							<p>تلفن تماس : {{ sitesetting.phone }}</p>
+							{% endif %}
+                            {% if sitesetting.fax %}
+                                <p>فکس : {{ sitesetting.fax}}</p>
+                            {% endif %}
+                            {% if sitesetting.email %}
+                                <p style="font-family: tahoma;">ایمیـل : {{ sitesetting.email }}</p>
+                            {% endif %}
+	    				</address>
+	    				<div class="social-networks">
+	    					<h2 class="title text-center">شبکـه های اجتـماعی</h2>
+							<span class="socials-share share">
+									<ul>
+										<a href="#">
+											<li>
+												<label>بلـه</label>
+												<img src="/static/images/product-details/Bale.png" alt="">
+											</li>
+										</a>
+										<a href="#">
+											<li>
+												<label>سـروش</label>
+												<img src="/static/images/product-details/Soroush.png">
+											</li>
+										</a>
+										<a href="#">
+											<li>
+												<label>اینستاگرام</label>
+												<img src="/static/images/product-details/Instagram.png" alt="">
+											</li>
+										</a>
+									</ul>
+								</span>
+	    				</div>
+	    			</div>
+    			</div>
+	    	</div>
+    	</div>
+    </div>
+{% endblock %}
